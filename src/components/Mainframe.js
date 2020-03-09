@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useReducer } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import {
   BrowserRouter as Router,
@@ -11,16 +11,39 @@ import ProductsContainer from './ProductsContainer';
 import CartContainer from './CartContainer';
 import { cartContext } from './CartContext';
 
+
+function reducer(state, action) {
+    switch (action.type) {
+        case 'add':
+            return {
+                cart: state.cart.map(c =>
+                    c.id === action.id ? { ...c, qt: c.qt + 1 } : c
+                )
+            }
+        case 'remove':
+            return {
+                cart: state.cart.map(c =>
+                    c.id === action.id ? { ...c, qt: c.qt - 1 } : c
+                )
+            }
+        default:
+        throw new Error();
+    }
+}
+
 function Mainframe() {
 
-  const [cart, setCart] = useState(1);
+  const cart = [
+      {id:1, qt:2},
+      {id:3, qt:2},
+      {id:5, qt:1}
+  ];
 
-  const updateCart = () => {
-    setCart(cart+1);
-  }
+  const [state, dispatch] = useReducer(reducer, {cart:cart, cartCount:0});
+
   const cartValue = {
-      cartQte: cart, 
-      updateCart: updateCart
+      cartPlantIds: cart, 
+      dispatch: dispatch
   }
  
   return (
@@ -39,18 +62,15 @@ function Mainframe() {
             </Navbar.Collapse>
                 <div className="rowNavRight">
                     <Button as={NavLink} exact to="/cart" variant="outline-light">Logout</Button>
-                    <cartContext.Consumer>
-                        {({cartQte, updateCart}) => {
-                            return (
-                                <Button as={NavLink} exact to="/cart" variant="primary plantBtn">Cart ({cart})</Button>
-                            );
-                        }}
-                    </cartContext.Consumer>
+                    <Button as={NavLink} exact to="/cart" variant="primary plantBtn">Cart ({cart.length})</Button>
+
                 </div>
             </Navbar>
             <Switch>
             <Route path="/products" component={ProductsContainer} />
-            <Route exact path="/cart" component={CartContainer} />
+            <Route exact path="/cart">
+                <CartContainer cartPlantIds={state.cart}/>
+            </Route>
             <Route exact path="/about" component={CartContainer} />
             <Route exact path="/" component={Homepage} />
             </Switch>

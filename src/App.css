@@ -78,3 +78,45 @@
   width: 130px;
   margin-bottom: 0px;
 }
+
+/*----CART----*/
+
+.plantRow {
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  display: inline-block;
+}
+
+  .plantRowLeft {
+    float: left;
+    height: 40px;
+  }
+
+    .plantRowLeft h5 {
+      line-height: 40px;
+    }
+
+  .plantRowRight {
+    float: right;
+  }
+
+    .plantRowRightEl {
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 10px;
+      line-height: 40px;
+    }
+
+      .plantRowOpe {
+        font-weight: 800;
+        font-size: 30px;
+        line-height: 33px;
+        cursor: pointer;
+      }
+
+        .plantRowOpe:hover {
+          opacity: 0.6;
+        }
+
