@@ -23,3 +23,15 @@ export const getPlant = (id) => {
         })
     );
 }
+
+export const delStock = (id, qt) => {
+    axios.patch(`${url}/plants/${id}`, {
+        stock: qt
+    })
+    .then(res => {
+        console.log(res);
+    })
+    .catch(function(error) {
+        console.log(error);
+    })
+}

@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import {
   BrowserRouter as Router,
@@ -12,20 +12,23 @@ import CartContainer from './CartContainer';
 import { cartContext } from './CartContext';
 
 
-function reducer(state, action) {
+function reducer(cartState, action) {
     switch (action.type) {
         case 'add':
-            return {
-                cart: state.cart.map(c =>
-                    c.id === action.id ? { ...c, qt: c.qt + 1 } : c
-                )
-            }
+            return cartState.map(c =>
+                c.id === action.id ? (c.qt === action.qtLeft ? c : { ...c, qt: c.qt + 1 }) : c
+            )
+            
+        case 'reduce':
+            return cartState.map(c => 
+                c.id === action.id ? (c.qt > 1 ? { ...c, qt: c.qt - 1 } : c) : c
+            )
+            
         case 'remove':
-            return {
-                cart: state.cart.map(c =>
-                    c.id === action.id ? { ...c, qt: c.qt - 1 } : c
-                )
-            }
+            return cartState.filter(c => c.id !== action.id)
+            
+        case 'empty':
+            return [];
         default:
         throw new Error();
     }
@@ -33,18 +36,26 @@ function reducer(state, action) {
 
 function Mainframe() {
 
+  const [cartCount, setCartCount] = useState(0);
+
   const cart = [
       {id:1, qt:2},
       {id:3, qt:2},
       {id:5, qt:1}
   ];
 
-  const [state, dispatch] = useReducer(reducer, {cart:cart, cartCount:0});
+  const [cartState, dispatch] = useReducer(reducer, cart);
 
   const cartValue = {
       cartPlantIds: cart, 
-      dispatch: dispatch
+      dispatch
   }
+
+  useEffect(() => {
+      let cartCount = 0;
+      cartState.map(e => cartCount += e.qt);
+      setCartCount(cartCount);
+  })
  
   return (
     <cartContext.Provider value={cartValue}>
@@ -62,14 +73,14 @@ function Mainframe() {
             </Navbar.Collapse>
                 <div className="rowNavRight">
                     <Button as={NavLink} exact to="/cart" variant="outline-light">Logout</Button>
-                    <Button as={NavLink} exact to="/cart" variant="primary plantBtn">Cart ({cart.length})</Button>
+                    <Button as={NavLink} exact to="/cart" variant="primary plantBtn">Cart ({cartCount})</Button>
 
                 </div>
             </Navbar>
             <Switch>
             <Route path="/products" component={ProductsContainer} />
             <Route exact path="/cart">
-                <CartContainer cartPlantIds={state.cart}/>
+                <CartContainer cartPlantIds={cartState} cartCount={cartCount}/>
             </Route>
             <Route exact path="/about" component={CartContainer} />
             <Route exact path="/" component={Homepage} />
