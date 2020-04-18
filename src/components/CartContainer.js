@@ -3,7 +3,11 @@ import {Container, Row, Col, Button} from 'react-bootstrap';
 import {cartContext} from "./CartContext";
 import {getPlant, delStock} from '../data/data-services';
 
+
 function CartContainer(props) {
+
+    const [update, setUpdate] = useState(1);
+
     const [cartPlants, setCartPlants] = useState([]);
 
     const fetchPlants = async (id, qt) => {
@@ -13,19 +17,22 @@ function CartContainer(props) {
     
     useEffect(() => {
         setCartPlants([]);
-        props.cartPlantIds.map(each => {
+        props.cartValues.map(each => {
             fetchPlants(each.id, each.qt);
         });
-    }, [props.cartPlantIds]);
+    }, [props.cartValues, update]);
 
-    const checkout = async (id, qt) => {
-        await delStock(id, qt);
-        setCartPlants(cartPlants);
+    const checkout = async (cartValues) => {
+        const promiseArray = cartValues.map(item => {
+            delStock(item.id, item.qt);
+        })
+        await Promise.all(promiseArray);
+        setUpdate(update === 1 ? 0 : 1);
+        // props.dispatch({id:id, type:'remove'})
     };
-
     return (
         <cartContext.Consumer>
-            {({cartPlantIds, dispatch}) => (
+            {({cartValues, dispatch}) => (
                 <Container>
                     <Row>
                         <Col>
@@ -47,7 +54,7 @@ function CartContainer(props) {
                     <Row className="cartPlantCheckout">
                         <Col>
                             <Button variant="light" onClick={() => dispatch({type:'empty'})}>Empty cart</Button>
-                            <Button variant="primary plantBtn" onClick={() => checkout(1, 4)}>Buy !</Button>
+                            <Button variant="primary plantBtn" onClick={() => checkout(cartValues)}>Buy !</Button>
                         </Col>
                     </Row>
                 </Container>

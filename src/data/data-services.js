@@ -1,4 +1,5 @@
 import axios from 'axios';
+import save from './data-save.json';
 
 const url = "http://localhost:4000"
 
@@ -25,13 +26,27 @@ export const getPlant = (id) => {
 }
 
 export const delStock = (id, qt) => {
-    axios.patch(`${url}/plants/${id}`, {
-        stock: qt
-    })
-    .then(res => {
-        console.log(res);
+
+    axios.get(`${url}/plants/${id}`)
+    .then(stock => {
+        axios.patch(`${url}/plants/${id}`, {
+        stock: stock.data.stock - qt
+        })
     })
     .catch(function(error) {
         console.log(error);
     })
+}
+
+
+export const reset = () => {
+    for (let i = 0; i < 9; i++) {
+        axios.put(`${url}/plants/${i+1}`, save.plants[i])
+        .then(res => {
+            console.log(res);
+        })
+        .catch(function(error) {
+            console.log(error);
+        })
+    }
 }

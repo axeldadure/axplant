@@ -49,7 +49,7 @@ export function ProductsListing() {
               </Card.Text>
             </Card.Body>
               <ListGroup className="list-group-flush">
-                <ListGroup.Item>Quantity pet unit : {plant.quantity}</ListGroup.Item>
+                <ListGroup.Item>Stock left : {plant.stock}</ListGroup.Item>
               </ListGroup>
             <Card.Body>
               <span className="plantPrice">Price : {plant.price}$</span>

@@ -79,6 +79,13 @@
   margin-bottom: 0px;
 }
 
+.detailCard-stock {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+
 /*----CART----*/
 
 .cartPlantRows {

@@ -9,6 +9,9 @@ import {
 import Homepage from './Homepage';
 import ProductsContainer from './ProductsContainer';
 import CartContainer from './CartContainer';
+
+import {reset} from '../data/data-services';
+
 import { cartContext } from './CartContext';
 
 
@@ -35,7 +38,7 @@ function reducer(cartState, action) {
 }
 
 function Mainframe() {
-
+    
   const [cartCount, setCartCount] = useState(0);
 
   const cart = [
@@ -47,7 +50,7 @@ function Mainframe() {
   const [cartState, dispatch] = useReducer(reducer, cart);
 
   const cartValue = {
-      cartPlantIds: cart, 
+      cartValues: cart, 
       dispatch
   }
 
@@ -56,6 +59,10 @@ function Mainframe() {
       cartState.map(e => cartCount += e.qt);
       setCartCount(cartCount);
   })
+
+  const resetPlants = async () => {
+    await reset();
+  }
  
   return (
     <cartContext.Provider value={cartValue}>
@@ -72,7 +79,11 @@ function Mainframe() {
                 </Nav>
             </Navbar.Collapse>
                 <div className="rowNavRight">
-                    <Button as={NavLink} exact to="/cart" variant="outline-light">Logout</Button>
+                    <Button as={NavLink} 
+                    exact 
+                    to="/cart" 
+                    variant="outline-light"
+                    onClick={() => resetPlants()}>Logout</Button>
                     <Button as={NavLink} exact to="/cart" variant="primary plantBtn">Cart ({cartCount})</Button>
 
                 </div>
@@ -80,7 +91,7 @@ function Mainframe() {
             <Switch>
             <Route path="/products" component={ProductsContainer} />
             <Route exact path="/cart">
-                <CartContainer cartPlantIds={cartState} cartCount={cartCount}/>
+                <CartContainer cartValues={cartState} cartCount={cartCount} dispatch={dispatch} />
             </Route>
             <Route exact path="/about" component={CartContainer} />
             <Route exact path="/" component={Homepage} />

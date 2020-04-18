@@ -1,0 +1,97 @@
+{
+  "plants": [
+    {
+      "id": 1,
+      "name": "Carrots",
+      "description": "The carrot (Daucus carota subsp. sativus) is a root vegetable, usually orange in colour, though purple, black, red, white, and yellow cultivars exist They are a domesticated form of the wild carrot, Daucus carota, native to Europe and Southwestern Asia. The plant probably originated in Persia and was originally cultivated for its leaves and seeds. The most commonly eaten part of the plant is the taproot, although the stems and leaves are eaten as well. The domestic carrot has been selectively bred for its greatly enlarged, more palatable, less woody-textured taproot.",
+      "reference": "PLCAR1",
+      "stock": 10,
+      "price": 35,
+      "image": "carrots.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Tomatoes",
+      "description": "The tomato is the edible, often red, berry of the plant Solanum lycopersicum, commonly known as a tomato plant. The species originated in western South America and Central America. The Nahuatl (Aztec language) word tomatl gave rise to the Spanish word tomate, from which the English word tomato derived. Its domestication and use as a cultivated food may have originated with the indigenous peoples of Mexico. The Aztecs used tomatoes in their cooking at the time of the Spanish conquest of the Aztec Empire, and after the Spanish encountered the tomato for the first time after their contact with the Aztecs, they brought the plant to Europe.",
+      "reference": "PLTOM2",
+      "stock": 3,
+      "price": 25,
+      "image": "tomatoes.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Oranges",
+      "description": "The orange is the fruit of the citrus species Citrus × sinensis in the family Rutaceae, native to China. It is also called sweet orange, to distinguish it from the related Citrus × aurantium, referred to as bitter orange. The sweet orange reproduces asexually (apomixis through nucellar embryony); varieties of sweet orange arise through mutations.",
+      "reference": "PLORA3",
+      "stock": 50,
+      "price": 6.55,
+      "image": "oranges.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Beetroot",
+      "description": "The beetroot is the taproot portion of a beet plant, usually known in North America as the beet, and also known as the table beet, garden beet, sugar beet, red beet, dinner beet or golden beet. It is one of several cultivated varieties of Beta vulgaris grown for their edible taproots and leaves (called beet greens); they have been classified as B. vulgaris subsp. vulgaris 'Conditiva' Group.",
+      "reference": "PLBEE4",
+      "stock": 5,
+      "price": 31,
+      "image": "beets.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Salad",
+      "description": "A salad is a dish consisting of a mixture of small pieces of food, usually vegetables or fruit. However, different varieties of salad may contain virtually any type of ready-to-eat food. Salads are typically served at room temperature or chilled, with notable exceptions such as south German potato salad which can be served warm.",
+      "reference": "PLSAL5",
+      "stock": 400,
+      "price": 0.99,
+      "image": "salads.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Potatoes",
+      "description": "The potato is a root vegetable native to the Americas, a starchy tuber of the plant Solanum tuberosum, and the plant itself, a perennial in the family Solanaceae. Wild potato species can be found throughout the Americas, from the United States to southern Chile. The potato was originally believed to have been domesticated by indigenous peoples of the Americas independently in multiple locations, but later genetic testing of the wide variety of cultivars and wild species traced a single origin for potatoes.",
+      "reference": "PLPOT6",
+      "stock": 8,
+      "price": 45.09,
+      "image": "potatoes.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Beans",
+      "description": "A bean is the seed of one of several genera of the flowering plant family Fabaceae, which are used for human or animal food. They are a part of the vegetable family, and can be cooked in many different ways, including boiling, frying, and baking, and are used in several traditional dishes throughout the world.",
+      "reference": "PLBEA7",
+      "stock": 69,
+      "price": 69.96,
+      "image": "beans.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Avocado",
+      "description": "The avocado (Persea americana), a tree with probable origin in south-central Mexico, is classified as a member of the flowering plant family Lauraceae. The fruit of the plant, also called an avocado (or avocado pear or alligator pear), is botanically a large berry containing a single large seed.",
+      "reference": "PLAVO8",
+      "stock": 10,
+      "price": 50,
+      "image": "avocadoes.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Bell Pepper",
+      "description": "The bell pepper (also known as sweet pepper, pepper or capsicum) is a cultivar group of the species Capsicum annuum. Cultivars of the plant produce fruits in different colours, including red, yellow, orange, green, white, and purple. Bell peppers are sometimes grouped with less pungent pepper varieties as 'sweet peppers'. While they are fruits—botanically classified as berries—they are commonly used as a vegetable ingredient or side dish.",
+      "reference": "PLGPE9",
+      "stock": 9,
+      "price": 15,
+      "image": "peppers.jpg"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "login": "james",
+      "pass": "password"
+    },
+    {
+      "id": 2,
+      "login": "lily",
+      "pass": "password"
+    }
+  ]
+}
